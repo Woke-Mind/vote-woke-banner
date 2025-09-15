@@ -2,9 +2,10 @@
 // firebase mo-gallery-ppt
 // Display images from Firebase storage as a billboard using createImg
 
-let galleryKey = 'mo-1/gallery-@r-ppt';
+// let galleryKey = 'mo-1/gallery-@r-ppt';
 // let galleryKey = 'mo-gallery-ims-web';
-let scrollSpeed = 2;
+let scrollByStep = 4;
+// let scrollSpeed = 1;
 let nitems = 0;
 let updateCount = 0;
 let doScroll = false;
@@ -41,14 +42,17 @@ function setup() {
   check_url_param();
 
   // Setup listner for changes to firebase db
-  let galleryRef = fireb_.ref(fireb_.database, galleryKey);
-  fireb_.onValue(galleryRef, (snapshot) => {
-    const data = snapshot.val();
-    console.log('galleryRef data', data);
-    received_gallery(data);
-  });
+  // let galleryRef = fireb_.ref(fireb_.database, galleryKey);
+  // fireb_.onValue(galleryRef, (snapshot) => {
+  //   const data = snapshot.val();
+  //   console.log('galleryRef data', data);
+  //   received_gallery(data);
+  // });
+  // received_gallery(images_ref);
 
   create_ui();
+
+  received_gallery(images_ref);
 
   my.qrcode_url = () => {
     // return `./qrcode/qrcode_heathercoxrichardson.substack.com.png?v=59`;
@@ -129,8 +133,10 @@ function scrollingStalled() {
 
 function draw() {
   // console.log('draw');
-  if (doScroll && frameCount % scrollSpeed == 0) {
-    window.scrollBy(0, 1); // 1
+  if (doScroll) {
+    // if (doScroll && frameCount % scrollSpeed == 0) {
+    // window.scrollBy(0, 1); // 1
+    window.scrollBy(0, scrollByStep); // 1
     if (scrollingStalled()) {
       window.scrollTo(0, 0);
       lastY = 0;
@@ -141,6 +147,15 @@ function draw() {
 
 // mediaPath
 // authorEmail
+let images_ref = [
+  { mediaPath: 'images/309.jpeg', authorEmail: '309' },
+  { mediaPath: 'images/310.jpeg', authorEmail: '310' },
+  { mediaPath: 'images/311.jpeg', authorEmail: '311' },
+  { mediaPath: 'images/312.jpeg', authorEmail: '312' },
+  { mediaPath: 'images/313.jpeg', authorEmail: '313' },
+  { mediaPath: 'images/314.jpeg', authorEmail: '314' },
+  { mediaPath: 'images/319.jpeg', authorEmail: '319' },
+];
 
 function received_gallery(data, opts) {
   window.scrollTo(0, 0);
@@ -275,7 +290,7 @@ function check_url_param() {
     // galleryKey = ngallery;
     galleryKey = 'mo-gallery-' + ngallery;
   }
-  console.log('galleryKey', galleryKey);
+  // console.log('galleryKey', galleryKey);
 
   my.scrollParam = params['scroll'];
   if (my.scrollParam) my.scrollParam = parseFloat(my.scrollParam);
