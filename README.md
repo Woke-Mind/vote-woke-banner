@@ -1,1 +1,1 @@
-# no-woke-banner
+# vote-woke-banner
