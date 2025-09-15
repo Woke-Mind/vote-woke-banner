@@ -139,6 +139,9 @@ function draw() {
   }
 }
 
+// mediaPath
+// authorEmail
+
 function received_gallery(data, opts) {
   window.scrollTo(0, 0);
   let div = ui_div_empty('igallery');
