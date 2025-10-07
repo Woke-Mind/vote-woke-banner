@@ -4,7 +4,8 @@
 
 // let galleryKey = 'mo-1/gallery-@r-ppt';
 // let galleryKey = 'mo-gallery-ims-web';
-let scrollByStep = 4;
+let scrollByStep = 1;
+// let scrollByStep = 4;
 // let scrollSpeed = 1;
 let nitems = 0;
 let updateCount = 0;
